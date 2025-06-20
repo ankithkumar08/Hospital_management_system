@@ -124,11 +124,13 @@ Stores billing and payment details.
 - Top 5 doctors by billed amount.
 - Revenue by treatment type.
 - Patient who spent the most.
-
+### analysis
+'''sql
 -- 1. Patient registrations per month
 SELECT MONTH(registration_date) AS month, COUNT(*) AS count 
 FROM patients 
 GROUP BY month;
+'''
 
 -- 2. Gender distribution of patients
 SELECT gender, COUNT(*) AS total 
