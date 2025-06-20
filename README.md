@@ -155,19 +155,25 @@ FROM appointments
 GROUP BY doctor_id 
 ORDER BY total DESC 
 LIMIT 1;
-
+```
+---
+```sql
 -- 5. Average patient age per doctor
 SELECT a.doctor_id, ROUND(AVG(TIMESTAMPDIFF(YEAR, p.date_of_birth, CURDATE()))) AS avg_age
 FROM appointments a
 JOIN patients p ON a.patient_id = p.patient_id
 GROUP BY a.doctor_id;
-
+```
+---
+```sql
 -- 6. Appointments marked as No-show or Cancelled
 SELECT status, COUNT(*) 
 FROM appointments 
 WHERE status IN ('No-show', 'Cancelled') 
 GROUP BY status;
-
+```
+---
+```sql
 -- 7. Most popular specialization
 SELECT specialization, COUNT(*) AS visits
 FROM doctors d
@@ -175,7 +181,9 @@ JOIN appointments a ON d.doctor_id = a.doctor_id
 GROUP BY specialization 
 ORDER BY visits DESC 
 LIMIT 1;
-
+```
+---
+```sql
 -- 8. Average appointments per doctor per month
 SELECT doctor_id, AVG(monthly_appointments) AS average
 FROM (
@@ -184,14 +192,18 @@ FROM (
   GROUP BY doctor_id, month
 ) AS sub
 GROUP BY doctor_id;
-
+```
+---
+```sql
 -- 9. Hospital branch with most experienced doctors
 SELECT hospital_branch, SUM(years_experience) AS total_exp
 FROM doctors
 GROUP BY hospital_branch
 ORDER BY total_exp DESC
 LIMIT 1;
-
+```
+---
+```sql
 -- 10. Top 5 doctors by billed treatment amount
 SELECT a.doctor_id, SUM(t.cost) AS total_billed
 FROM appointments a
@@ -199,62 +211,82 @@ JOIN treatments t ON a.appointment_id = t.appointment_id
 GROUP BY a.doctor_id
 ORDER BY total_billed DESC 
 LIMIT 5;
-
+```
+---
+```sql
 -- 11. Revenue by treatment type
 SELECT treatment_type, SUM(cost) AS total_revenue 
 FROM treatments 
 GROUP BY treatment_type;
-
+```
+---
+```sql
 -- 12. Treatment with highest average cost
 SELECT treatment_type, AVG(cost) AS avg_cost 
 FROM treatments 
 GROUP BY treatment_type 
 ORDER BY avg_cost DESC 
 LIMIT 1;
-
+```
+---
+```sql
 -- 13. Treatments by month
 SELECT MONTH(treatment_date) AS month, COUNT(*) 
 FROM treatments 
 GROUP BY month 
 ORDER BY month;
-
+```
+---
+```sql
 -- 14. Most common treatment type
 SELECT treatment_type, COUNT(*) AS total 
 FROM treatments 
 GROUP BY treatment_type 
 ORDER BY total DESC 
 LIMIT 1;
-
+```
+---
+```sql
 -- 15. Average treatment cost per doctor
 SELECT a.doctor_id, AVG(t.cost) AS avg_cost
 FROM appointments a
 JOIN treatments t ON a.appointment_id = t.appointment_id
 GROUP BY a.doctor_id;
-
+```
+---
+```sql
 -- 16. Total billed vs amount paid
 SELECT SUM(t.cost) AS total_cost, SUM(b.amount) AS total_paid,
 SUM(t.cost) - SUM(b.amount) AS outstanding
 FROM billing b
 JOIN treatments t ON b.treatment_id = t.treatment_id;
-
+```
+---
+```sql
 -- 17. Most used payment method
 SELECT payment_method, COUNT(*) AS count 
 FROM billing 
 GROUP BY payment_method 
 ORDER BY count DESC 
 LIMIT 1;
-
+```
+---
+```sql
 -- 18. Patients with pending or failed payments
 SELECT patient_id, payment_status 
 FROM billing 
 WHERE payment_status IN ('Pending', 'Failed');
-
+```
+---
+```sql
 -- 19. Revenue by insurance provider
 SELECT insurance_provider, SUM(b.amount) AS revenue
 FROM billing b
 JOIN patients p ON b.patient_id = p.patient_id
 GROUP BY insurance_provider;
-
+```
+---
+```sql
 -- 20. Treatment types with failed payments
 SELECT t.treatment_type, COUNT(*) AS failed_count
 FROM billing b
@@ -262,41 +294,51 @@ JOIN treatments t ON b.treatment_id = t.treatment_id
 WHERE b.payment_status = 'Failed'
 GROUP BY t.treatment_type
 ORDER BY failed_count DESC;
-
+```
+---
+```sql
 -- 21. Patient who spent the most
 SELECT patient_id, SUM(amount) AS total_spent 
 FROM billing 
 GROUP BY patient_id 
 ORDER BY total_spent DESC 
 LIMIT 1;
-
+```
+---
+```sql
 -- 22. Patients with partial payments
 SELECT b.patient_id, SUM(b.amount) AS amount_paid, (SUM(t.cost) - SUM(b.amount)) AS balance
 FROM billing b
 JOIN treatments t ON b.treatment_id = t.treatment_id
 GROUP BY b.patient_id
 HAVING balance > 0;
-
+```
+---
+```sql
 -- 23. Insurance provider with most patients
 SELECT insurance_provider, COUNT(*) AS count 
 FROM patients 
 GROUP BY insurance_provider 
 ORDER BY count DESC 
 LIMIT 1;
-
+```
+---
+```sql
 -- 24. Busiest appointment days
 SELECT DAYNAME(appointment_date) AS weekday, COUNT(*) AS total
 FROM appointments
 GROUP BY weekday
 ORDER BY total DESC;
-
+```
+---
+```sql
 -- 25. Patients with multiple appointments with the same doctor
 SELECT patient_id, doctor_id, COUNT(*) AS total
 FROM appointments
 GROUP BY patient_id, doctor_id
 HAVING total > 1
 ORDER BY total DESC;
-
+```
 ---
 
 ## ✅ Usage
