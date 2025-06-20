@@ -138,8 +138,11 @@ You can run all the `CREATE`, `INSERT`, and `SELECT` queries in any MySQL-compat
 **Ankithkumar Chillapalli**  
 B.Tech in CSE (AI & ML) | Aspiring Data Analyst | Passionate about SQL and Data Analytics
 
+
+
+## Connect with Me 🤝
+Find out more about my journey and connect with me on [LinkedIn](https://www.linkedin.com/in/ankithkumar08-data-analyst).
+
 ---
 
-## 📎 License
-
-This project is for educational purposes and open for use and extension under the [MIT License](https://opensource.org/licenses/MIT).
+## Thank you for checking out my repository! Let’s code together! 💻
