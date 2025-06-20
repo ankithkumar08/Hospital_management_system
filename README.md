@@ -136,7 +136,7 @@ You can run all the `CREATE`, `INSERT`, and `SELECT` queries in any MySQL-compat
 ## 👨‍💻 Author
 
 **Ankithkumar Chillapalli**  
-B.Tech in CSE (AI & ML) | Aspiring Data Engineer | Passionate about SQL and Data Analytics
+B.Tech in CSE (AI & ML) | Aspiring Data Analyst | Passionate about SQL and Data Analytics
 
 ---
 
