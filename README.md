@@ -340,6 +340,18 @@ HAVING total > 1
 ORDER BY total DESC;
 ```
 ---
+🛠️ Skills Demonstrated
+✅ Relational Database Design
+
+✅ SQL Querying (Joins, Aggregations, Filters)
+
+✅ Healthcare Data Analysis & Reporting
+
+✅ Payment, Billing, and Patient Journey Insights
+
+✅ Time-based and Cost-based Analysis
+
+
 
 ## ✅ Usage
 
