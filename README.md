@@ -125,25 +125,30 @@ Stores billing and payment details.
 - Revenue by treatment type.
 - Patient who spent the most.
 ### analysis
-'''sql
+```sql
 -- 1. Patient registrations per month
 SELECT MONTH(registration_date) AS month, COUNT(*) AS count 
 FROM patients 
 GROUP BY month;
-'''
-
+```
+---
+```sql
 -- 2. Gender distribution of patients
 SELECT gender, COUNT(*) AS total 
 FROM patients 
 GROUP BY gender;
-
+```
+---
+```sql
 -- 3. Patient with most appointments
 SELECT patient_id, COUNT(*) AS total 
 FROM appointments 
 GROUP BY patient_id 
 ORDER BY total DESC 
 LIMIT 1;
-
+```
+---
+```sql
 -- 4. Doctor with most appointments
 SELECT doctor_id, COUNT(*) AS total 
 FROM appointments 
